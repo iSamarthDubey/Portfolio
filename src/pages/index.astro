@@ -1,11 +1,183 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Base from '../layouts/Base.astro';
+import '../styles/global.css';
+import { site } from '../config/site';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const currentYear = new Date().getFullYear();
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Base title={`${site.name}`} description={site.tagline}>
+  <div class="min-h-screen bg-[#0a0a0f] text-white">
+    <!-- Subtle gradient background -->
+    <div class="fixed inset-0 -z-10 bg-gradient-to-br from-blue-950/20 via-transparent to-purple-950/20"></div>
+    
+    <div class="mx-auto max-w-5xl px-6 py-20">
+      
+      <!-- Nav -->
+      <nav class="mb-20 flex items-center justify-between">
+        <div class="text-sm font-medium text-slate-400">
+          {site.name}
+        </div>
+        <div class="flex gap-6 text-sm">
+          <a href="#work" class="text-slate-400 transition-colors hover:text-white">Work</a>
+          <a href="#about" class="text-slate-400 transition-colors hover:text-white">About</a>
+          <a href={`mailto:${site.email}`} class="text-slate-400 transition-colors hover:text-white">Contact</a>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <header class="mb-32">
+        <div class="mb-3 inline-flex items-center gap-2 text-sm text-slate-500">
+          <div class="h-1.5 w-1.5 rounded-full bg-blue-500"></div>
+          <span>BTech CSE, Cybersecurity</span>
+        </div>
+        
+        <h1 class="mb-6 bg-gradient-to-br from-white via-slate-100 to-slate-400 bg-clip-text text-6xl font-bold leading-tight tracking-tight text-transparent md:text-7xl">
+          {site.title}
+        </h1>
+        
+        <p class="mb-12 max-w-2xl text-lg leading-relaxed text-slate-400">
+          {site.bio}
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a 
+            href={`mailto:${site.email}`}
+            class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 px-4 py-2 text-sm font-medium text-white transition-all hover:shadow-lg hover:shadow-blue-500/25"
+          >
+            Get in touch
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a 
+            href={`https://github.com/${site.github}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-slate-800 px-4 py-2 text-sm font-medium text-slate-300 transition-all hover:border-slate-700 hover:bg-slate-900"
+          >
+            GitHub
+          </a>
+          <a 
+            href={`https://linkedin.com/in/${site.linkedin}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-slate-800 px-4 py-2 text-sm font-medium text-slate-300 transition-all hover:border-slate-700 hover:bg-slate-900"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </header>
+
+      <!-- About -->
+      <section id="about" class="mb-32">
+        <h2 class="mb-8 text-xs font-semibold uppercase tracking-widest text-slate-500">Focus Areas</h2>
+        
+        <div class="grid gap-4 md:grid-cols-3">
+          <div class="group rounded-xl border border-slate-900 bg-gradient-to-br from-slate-950/50 to-slate-900/30 p-6 transition-all hover:border-slate-800">
+            <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10">
+              <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-sm font-semibold">Cybersecurity</h3>
+            <p class="text-xs leading-relaxed text-slate-500">
+              OWASP Top 10, penetration testing, vulnerability assessment, secure coding practices
+            </p>
+          </div>
+
+          <div class="group rounded-xl border border-slate-900 bg-gradient-to-br from-slate-950/50 to-slate-900/30 p-6 transition-all hover:border-slate-800">
+            <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/10 to-blue-500/10">
+              <svg class="h-5 w-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-sm font-semibold">Web Development</h3>
+            <p class="text-xs leading-relaxed text-slate-500">
+              MERN stack for building secure, scalable applications
+            </p>
+          </div>
+
+          <div class="group rounded-xl border border-slate-900 bg-gradient-to-br from-slate-950/50 to-slate-900/30 p-6 transition-all hover:border-slate-800">
+            <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/10 to-pink-500/10">
+              <svg class="h-5 w-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+            </div>
+            <h3 class="mb-2 text-sm font-semibold">Backend Development</h3>
+            <p class="text-xs leading-relaxed text-slate-500">
+              Java, Spring Boot, REST APIs, database design
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="work" class="mb-32">
+        <h2 class="mb-8 text-xs font-semibold uppercase tracking-widest text-slate-500">Selected Work</h2>
+        
+        <div class="space-y-3">
+          <a href="#" class="group block rounded-xl border border-slate-900 bg-gradient-to-br from-slate-950/50 to-slate-900/30 p-6 transition-all hover:border-slate-800">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="mb-1 flex items-center gap-2">
+                  <h3 class="text-sm font-semibold">Security Project</h3>
+                  <span class="rounded-md bg-blue-500/10 px-2 py-0.5 text-[10px] font-medium text-blue-400">Cybersecurity</span>
+                </div>
+                <p class="text-xs leading-relaxed text-slate-500">
+                  Vulnerability scanner and penetration testing toolkit
+                </p>
+              </div>
+              <svg class="h-4 w-4 text-slate-700 transition-all group-hover:translate-x-1 group-hover:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </a>
+
+          <a href="#" class="group block rounded-xl border border-slate-900 bg-gradient-to-br from-slate-950/50 to-slate-900/30 p-6 transition-all hover:border-slate-800">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="mb-1 flex items-center gap-2">
+                  <h3 class="text-sm font-semibold">Web Application</h3>
+                  <span class="rounded-md bg-cyan-500/10 px-2 py-0.5 text-[10px] font-medium text-cyan-400">Full-Stack</span>
+                </div>
+                <p class="text-xs leading-relaxed text-slate-500">
+                  Secure authentication system with JWT and OAuth2
+                </p>
+              </div>
+              <svg class="h-4 w-4 text-slate-700 transition-all group-hover:translate-x-1 group-hover:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </a>
+
+          <a href="#" class="group block rounded-xl border border-slate-900 bg-gradient-to-br from-slate-950/50 to-slate-900/30 p-6 transition-all hover:border-slate-800">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="mb-1 flex items-center gap-2">
+                  <h3 class="text-sm font-semibold">Backend API</h3>
+                  <span class="rounded-md bg-purple-500/10 px-2 py-0.5 text-[10px] font-medium text-purple-400">Java</span>
+                </div>
+                <p class="text-xs leading-relaxed text-slate-500">
+                  RESTful API with Spring Boot and PostgreSQL
+                </p>
+              </div>
+              <svg class="h-4 w-4 text-slate-700 transition-all group-hover:translate-x-1 group-hover:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="border-t border-slate-900 pt-8">
+        <div class="flex items-center justify-between text-xs text-slate-600">
+          <p>© {currentYear} {site.name}</p>
+          <p>Pre-final year student, learning & building</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</Base>
+
